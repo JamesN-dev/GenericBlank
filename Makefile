@@ -1,13 +1,19 @@
-RACK_DIR ?= ../..
+# Set the Rack SDK directory (relative path)
+RACK_DIR ?= ../Rack-SDK
 
-FLAGS +=
+# Compiler and linker flags
+FLAGS += -g -Wall -Wextra -Wno-unused-parameter -fno-omit-frame-pointer
+CXXFLAGS += -std=c++11 $(FLAGS)
+LDFLAGS +=
 
+# Define sources
 SOURCES += src/plugin.cpp
-SOURCES += src/Blank.cpp
+SOURCES += src/BigRedButton.cpp  # Add other module sources here
 
+# Resources to include in the distributable ZIP
 DISTRIBUTABLES += res
-# DISTRIBUTABLES += presets
-# DISTRIBUTABLES += selections
+DISTRIBUTABLES += $(wildcard LICENSE*)
+DISTRIBUTABLES += $(wildcard presets)
 
 # Include the VCV Rack plugin Makefile framework
 include $(RACK_DIR)/plugin.mk
